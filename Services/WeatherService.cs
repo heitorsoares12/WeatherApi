@@ -1,35 +1,25 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using WeatherApp.Models;
+﻿using WeatherApp.Models;
+using WeatherApp.Repository;
 
-public class WeatherService
+namespace WeatherApp.Services
 {
-    private readonly HttpClient _httpClient;
-    private readonly string _baseUrl;
-    private readonly string _apiKey;
-
-    public WeatherService()
+    public class WeatherService
     {
-        _httpClient = new HttpClient();
-        _baseUrl = "http://api.openweathermap.org/data/2.5";
-        _apiKey = "ae94ae9ef132dc5d8f5ce9f1e3346b22";
-    }
+        private readonly WeatherRepository _weatherRepository;
 
-    public async Task<ActionResult<Weather>> GetWeatherForecastAsync(string city)
-    {
-        try
+        public WeatherService()
         {
-            var response = await _httpClient.GetStringAsync($"{_baseUrl}/forecast?id=524901&appid={_apiKey}");
-
-
-            return null;
+            _weatherRepository = new WeatherRepository();
         }
-        catch (Exception ex)
+
+        public async Task<Weather> GetWeatherForecastAsync(string location, int days)
         {
-            return null;
+            return await _weatherRepository.GetWeatherForecastAsync(location, days);
+        }
+
+        public async Task<Weather> GetWeatherAsync(string location)
+        {
+            return await _weatherRepository.GetWeatherAsync(location);
         }
     }
 }

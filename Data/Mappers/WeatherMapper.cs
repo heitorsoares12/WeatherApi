@@ -5,7 +5,7 @@ namespace WeatherApp.Data.Mappers
 {
     internal class WeatherMapper
     {
-        internal Weather MapWeather(JObject json)
+        internal Weather MapWeatherForecast(JObject json)
         {
             var weather = new Weather
             {
@@ -44,6 +44,31 @@ namespace WeatherApp.Data.Mappers
                         }
                     }).ToList()
                 }
+            };
+
+            return weather;
+        }
+
+        internal Weather MapWeather(JObject json)
+        {
+            var weather = new Weather
+            {
+                Location = new Location
+                {
+                    Name = json["location"]["name"].ToString(),
+                    Country = json["location"]["country"].ToString()
+                },
+                Current = new Current
+                {
+                    LastUpdated = json["current"]["last_updated"].ToString(),
+                    Temp = json["current"]["temp_c"].ToObject<double>(),
+                    Condition = new Condition
+                    {
+                        Text = json["current"]["condition"]["text"].ToString(),
+                        Icon = json["current"]["condition"]["icon"].ToString(),
+                    },
+                    FeelsLike = json["current"]["feelslike_c"].ToObject<double>()
+                },
             };
 
             return weather;
