@@ -10,6 +10,16 @@ namespace WeatherApp.Data
         {
         }
 
-        public DbSet<Location> Location { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<FavoriteCity> FavoriteCities { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+            .HasMany(u => u.FavoriteCities)
+            .WithOne(fc => fc.User)
+            .HasForeignKey(fc => fc.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

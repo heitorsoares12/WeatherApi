@@ -509,3 +509,4 @@ D:\Particular\WeatherApi\obj\Debug\net8.0\refint\WeatherApp.dll
 D:\Particular\WeatherApi\obj\Debug\net8.0\WeatherApp.pdb
 D:\Particular\WeatherApi\obj\Debug\net8.0\WeatherApp.genruntimeconfig.cache
 D:\Particular\WeatherApi\obj\Debug\net8.0\ref\WeatherApp.dll
+C:\WeatherApp\obj\Debug\net8.0\WeatherApp.sourcelink.json

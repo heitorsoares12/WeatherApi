@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Particular\\WeatherApi\\WeatherApp.csproj": {}
+    "C:\\WeatherApp\\WeatherApp.csproj": {}
   },
   "projects": {
-    "D:\\Particular\\WeatherApi\\WeatherApp.csproj": {
+    "C:\\WeatherApp\\WeatherApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Particular\\WeatherApi\\WeatherApp.csproj",
+        "projectUniqueName": "C:\\WeatherApp\\WeatherApp.csproj",
         "projectName": "WeatherApp",
-        "projectPath": "D:\\Particular\\WeatherApi\\WeatherApp.csproj",
-        "packagesPath": "C:\\Users\\desenv1\\.nuget\\packages\\",
-        "outputPath": "D:\\Particular\\WeatherApi\\obj\\",
+        "projectPath": "C:\\WeatherApp\\WeatherApp.csproj",
+        "packagesPath": "C:\\Users\\heito\\.nuget\\packages\\",
+        "outputPath": "C:\\WeatherApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\desenv1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\heito\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
