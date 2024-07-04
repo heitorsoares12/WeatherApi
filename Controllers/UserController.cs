@@ -18,8 +18,23 @@ namespace WeatherApp.Controllers
             _context = context;
         }
 
-        [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(string cpf)
+        [HttpGet("user")]
+        public async Task<ActionResult<User>> GetUser(string cpf)
+        {
+            var user = await _context.Users
+                .Include(u => u.FavoriteCities)
+                .FirstOrDefaultAsync(u => u.CPF == cpf);
+
+            if (user == null)
+            {
+                return NotFound(new { message = "Usuário não encontrado." });
+            }
+
+            return Ok(user);
+        }
+
+        [HttpPost("user")]
+        public async Task<ActionResult<User>> RegisterUser(string cpf)
         {
             var user = await _context.Users
                 .Include(u => u.FavoriteCities)
@@ -34,7 +49,7 @@ namespace WeatherApp.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Login), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(RegisterUser), new { id = user.Id }, user);
         }
 
         [HttpPost("{userId}/favorites")]
