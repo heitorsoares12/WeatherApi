@@ -22,7 +22,6 @@ namespace WeatherApp.Controllers
         public async Task<ActionResult<User>> GetUser(string cpf)
         {
             var user = await _context.Users
-                .Include(u => u.FavoriteCities)
                 .FirstOrDefaultAsync(u => u.CPF == cpf);
 
             if (user == null)
@@ -33,7 +32,7 @@ namespace WeatherApp.Controllers
             return Ok(user);
         }
 
-        [HttpPost("user")]
+        [HttpPost("register-user")]
         public async Task<ActionResult<User>> RegisterUser(string cpf)
         {
             var user = await _context.Users
@@ -89,6 +88,23 @@ namespace WeatherApp.Controllers
                 .ToListAsync();
 
             return Ok(favoriteCities);
+        }
+
+        [HttpDelete("{userId}/favorites")]
+        public async Task<IActionResult> RemoveFavorite(int userId, string cityName)
+        {
+            var favoriteCity = await _context.FavoriteCities
+                .FirstOrDefaultAsync(fc => fc.UserId == userId && fc.CityName == cityName);
+
+            if (favoriteCity == null)
+            {
+                return NotFound(new { message = "Cidade favorita não encontrada." });
+            }
+
+            _context.FavoriteCities.Remove(favoriteCity);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public string LastUpdated { get; set; }
         public double Temp {  get; set; }
-        public double FeelsLike { get; set; } //Sensacao Termica
+        public double FeelsLike { get; set; }
         public Condition Condition { get; set; }
 
     }
